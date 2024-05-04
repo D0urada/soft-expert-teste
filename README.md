@@ -62,7 +62,7 @@ para criar a vendor no projeto e não apenas no container, entrar no container d
 
 para entrar no container do node e rodar comandos do npm:
 ```sh
-    docker exec -it soft-expert-teste-node-1 /bin/sh 
+    docker exec -it soft-expert-teste-node-1 bash
 ```
 
 comandos dos arquivos css:

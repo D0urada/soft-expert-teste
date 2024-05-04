@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Utils\View;
 use App\Utils\Debug;
 
-class Home extends Page
+class Store extends Page
 {
 	public function __construct() 
 	{
@@ -14,11 +14,11 @@ class Home extends Page
 
 	public function index() 
 	{
-		$content = $this->view->render('home', [
-			'name' => 'home'
+		$content = $this->view->render('store', [
+			'name' => 'store'
 		]);
 
-		$title = 'Home Page';
+		$title = 'Loja';
 
 		return $this->getPage($title, $content);
 

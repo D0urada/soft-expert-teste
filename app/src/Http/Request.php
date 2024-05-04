@@ -2,71 +2,145 @@
 
 namespace App\Http;
 
-use App\Utils\Debug;
 
+/**
+ * Classe de requisição de rotas.
+ */
 class Request
 {
-	/**
-	 * metodo http da requisição
-	 * @var string
-	 */
-	private $httpMethod;
 
-	/**
-	 * uri da pagina
-	 * @var string
-	 */
-	private $uri;
+  /**
+   * Instância da classe Router
+   *
+   * @var Router
+   */
+  private $router;
 
-	/**
-	 * parametros da url ($_GET)
-	 * @var array
-	 */
-	private $queryParams = [];
+  /**
+   * Método HTTP da requisição.
+   *
+   * @var string
+   */
+  private $httpMethod;
 
-	/**
-	 * variaveis recebidas do post da pagina ($_post)
-	 * @var array
-	 */
-	private $postVars = [];
 
-	/**
-	 * cabeçadlho da requisição
-	 * @var array
-	 */
-	private $headers = [];
+  /**
+   * URI da página.
+   *
+   * @var string
+   */
+  private $uri;
 
-	public function __construct() 
-	{
-		$this->httpMethod 	= $_SERVER['REQUEST_METHOD'] ?? '';
-		$this->uri 			= $_SERVER['REQUEST_URI'] ?? '';
-		$this->queryParams 	= $_GET ?? [];
-		$this->postVars 	= $_POST ?? [];
-		$this->headers 		= getallheaders();
-	}
 
-	public function getHttpMethod()
-	{
-		return $this->httpMethod;
-	}
+  /**
+   * Parâmetros do URL.
+   *
+   * @var array
+   */
+  private $queryParams = [];
 
-	public function getUri()
-	{
-		return $this->uri;
-	}
+  /**
+   * Variáveis recebidas no POST da página
+   *
+   * @var array
+   */
+  private $postVars = [];
 
-	public function getQueryParams()
-	{
-		return $this->queryParams;
-	}
+  /**
+   * Cabeçalho da requisição.
+   *
+   * @var array
+   */
+  private $headers = [];
 
-	public function getPostVars()
-	{
-		return $this->postVars;
-	}
 
-	public function getHeaders()
-	{
-		return $this->headers;
-	}
+
+  /**
+   * Instanciar request
+   *
+   * @param Router Instância do Router
+   * @return void
+   */
+  public function __construct($router)
+  {
+    $this->router = $router;
+    $this->headers = getallheaders();
+    $this->queryParams = $_GET ?? [];
+    $this->postVars = $_POST ?? [];
+    $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
+    self::setUri();
+  }
+
+  /**
+   * Retorna a instância da classe Router utilizada pelo request
+   *
+   * @return Router
+   */
+  public function getRouter()
+  {
+    return $this->router;
+  }
+
+  /**
+   * Retorna o método HTTP da requisição.
+   *
+   * @return string
+   */
+  public function getHttpMethod()
+  {
+    return $this->httpMethod;
+  }
+
+  /**
+   * Retorna o URI da requisição.
+   *
+   * @return string
+   */
+  public function getUri()
+  {
+    return $this->uri;
+  }
+
+  /**
+   * Definir URI
+   *
+   * @return void
+   */
+  private function setUri()
+  {
+    $fullUri = $_SERVER['REQUEST_URI'] ?? '';
+
+    $this->uri = explode('?', $fullUri)[0];
+  }
+
+
+  /**
+   * Retorna os parâmetros (GET) do URL.
+   *
+   * @return array
+   */
+  public function getQueryParams()
+  {
+    return $this->queryParams;
+  }
+
+  /**
+   * Retorna as variáveis recebidas no POST da página.
+   *
+   * @return array
+   */
+  public function getPostVars()
+  {
+    return $this->postVars;
+  }
+
+  /**
+   * Retorna o cabeçalho da requisição.
+   *
+   * @return array
+   */
+  public function getHeaders()
+  {
+    return $this->headers;
+  }
 }

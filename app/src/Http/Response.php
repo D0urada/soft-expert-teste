@@ -2,70 +2,103 @@
 
 namespace App\Http;
 
-use App\Utils\Debug;
-
 class Response
 {
-	/**
-	 * codigo do status HTTP
-	 * @var interger
-	 */
-	private $httpCode = 200;
 
-	/**
-	 * cabeçalho do response
-	 * @var array
-	 */
-	private $headers = [];
+  /**
+   * Código do status HTTP.
+   *
+   * @var int
+   */
+  private $httpCode = 200;
 
-	/**
-	 * tipo do conteudo a ser retornado
-	 * @var string
-	 */
-	private $contentType = 'text/html';
+  /**
+   * Cabeçalho da resposta HTTP.
+   *
+   * @var array
+   */
+  private $headers = [];
 
-	/**
-	 * conteudo do response
-	 * @var mixed
-	 */
-	private $content;
+  /**
+   * Tipo do conteúdo retornado na resposta HTTP  .
+   *
+   * @var string
+   */
+  private $contentType = 'text/html';
 
-	public function __construct($httpCode, $content, $contentType = 'text/html') 
-	{
-		$this->httpCode 	= $httpCode;
-		$this->content 		= $content;
-		$this->setContentType($contentType);
-	}
+  /**
+   * Conteúdo retornado na resposta HTTP.
+   *
+   * @var mixed
+   */
+  private $content;
 
-	public function setContentType($contentType)
-	{
-		$this->contentType 	= $contentType;
-		$this->addHeader('Content-Type',$contentType);
-		
-	}
+  /**
+   * Construtor da classe.
+   *
+   * @param  int $httpCode
+   * @param  mixed $content
+   * @param  string $contentType
+   * @return void
+   */
+  public function __construct($httpCode, $content, $contentType = 'text/html')
+  {
+    $this->httpCode = $httpCode;
+    $this->content = $content;
+    self::setContentType($contentType);
+  }
 
-	public function addHeader($key,$value)
-	{
-		$this->headers[$key] = $value;
-	}
+  /**
+   * Alterar o tipo do conteúdo da resposta HTTP diretamente no cabeçalho. 
+   *
+   * @param string $contentType Tipo do conteúdo.
+   * @return void
+   */
+  public function setContentType($contentType)
+  {
+    $this->contentType = $contentType;
+    self::addHeader('Content-Type', $contentType);
+  }
 
-	public function sendResponse()
-	{
-		$this->sendHeaders();
+  /**
+   * Adicionar um cabeçalho à resposta HTTP.
+   *
+   * @param string $key Chave do cabeçalho
+   * @param string $value Valor da chave do cabeçalho
+   * @return void
+   */
+  public function addHeader($key, $value)
+  {
+    $this->headers[$key] = $value;
+  }
 
-		switch ($this->contentType) {
-			case 'text/html':
-				echo $this->content;
-				exit;
-		}
-	}
+  /**
+   * Enviar cabeçalho HTTP para o navegador.
+   *
+   * @return void
+   */
+  private function sendHeaders()
+  {
+    http_response_code($this->httpCode);
 
-	private function sendHeaders()
-	{
-		http_response_code($this->httpCode);
+    foreach ($this->headers as $key => $value) {
+      header($key . ': ' . $value);
+    }
+  }
 
-		foreach ($this->headers as $key => $value) {
-			header($key.': '.$value);
-		}
-	}
+  /**
+   * Enviar resposta para o usuário.
+   *
+   * @return void
+   */
+  public function sendResponse()
+  {
+    self::sendHeaders();
+
+    switch ($this->contentType) {
+      case 'text/html':
+        echo $this->content;
+        exit;
+    }
+  }
 }

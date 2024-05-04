@@ -6,14 +6,16 @@
 	"license": "MIT",
 	"scripts": {
 		"css-watch": "npx tailwindcss -i src/assets/css/input.css -o public/dist/output.css --watch",
-		"css-build": "npx tailwindcss -i src/assets/css/input.css -o public/dist/output.css --minify",
+		"css-build": "npx tailwindcss-cli build -i src/assets/css/input.css -o public/dist/output.css",
 		"js-watch": "watchify src/assets/js/app.js -o public/dist/app.js",
-		"js-build": "uglifyjs src/assets/js/app.js > public/dist/app.js "
+		"js-build": "browserify src/assets/js/app.js | uglifyjs > public/dist/app.js"
 	},
 	"dependencies": {
 		"@mapbox/node-pre-gyp": "^1.0.11",
 		"autoprefixer": "^10.4.19",
 		"browser-sync": "latest",
+		"browserify": "^17.0.0",
+		"fsevents": "^2.3.3",
 		"jquery": "^3.7.1",
 		"jsdom": "^24.0.0",
 		"nodemon": "^3.1.0",
@@ -25,11 +27,11 @@
 		"postcss-easy-import": "latest",
 		"postcss-loader": "^8.1.1",
 		"postcss-preset-env": "latest",
-		"tailwindcss": "^3.4.3",
 		"uglify-js": "^3.17.4",
 		"watchify": "^4.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.24.5"
+		"@babel/core": "^7.24.5",
+		"tailwindcss": "^3.4.3"
 	}
 }
