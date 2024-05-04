@@ -4,9 +4,7 @@ services:
     node:
         image: node:latest
         volumes:
-            - './app:/var/www/html/public/'
-        command: tail -f /dev/null
-        working_dir: /var/www/html/public/
+            - './app/public/dist:/var/www/html/public/dist'
         ports:
             - "5173:5173"
         networks:
@@ -51,6 +49,7 @@ services:
         ports:
             - '8080:80'
         volumes:
+           - './app/public:/var/www/html/public'
            - './docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
         networks:
             - local-network
