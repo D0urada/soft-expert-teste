@@ -1,1 +1,3 @@
-alert('assss');
+var $ = require( "jquery" );
+
+alert('teste');

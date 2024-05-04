@@ -5,6 +5,8 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 
 RUN apk update
 
+COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
 # instala Postgre PDO
 RUN set -eux; \
 	apk add libpq-dev \

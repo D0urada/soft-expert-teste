@@ -4,7 +4,9 @@ services:
     node:
         image: node:latest
         volumes:
-            - './app/public/dist:/var/www/html/public/dist'
+            - ./app/:/var/www/html/
+        command: tail -f /dev/null
+        working_dir: /var/www/html/
         ports:
             - "5173:5173"
         networks:

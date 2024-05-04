@@ -44,7 +44,7 @@ registrar o servidor:
 
 #  comandos extras:
 
-buildar docker em subir ambiente de dev
+buildar docker em subir ambiente de dev, com container do node
 ```sh
     docker compose -f docker-compose-dev.yaml up --build -d
 ```
