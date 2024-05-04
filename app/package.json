@@ -1,0 +1,33 @@
+{
+	"name": "pacote",
+	"version": "0.0.1",
+	"description": "Example workflow",
+	"author": "You <you@youremail.com>",
+	"license": "MIT",
+	"scripts": {
+		"css-watch": "npx tailwindcss -i src/assets/css/input.css -o public/dist/output.css --watch",
+		"css-build": "npx tailwindcss -i src/assets/css/input.css -o public/dist/output.css --minify",
+		"js-watch": "watchify src/assets/js/app.js -o public/dist/app.js",
+		"js-build": "uglifyjs src/assets/js/app.js > public/dist/app.js "
+	},
+	"dependencies": {
+		"autoprefixer": "^10.4.19",
+		"browser-sync": "latest",
+		"jquery": "^3.7.1",
+		"jsdom": "^24.0.0",
+		"nodemon": "^3.1.0",
+		"npm-run-all": "latest",
+		"onchange": "latest",
+		"postcss": "^8.4.38",
+		"postcss-clean": "^1.2.0",
+		"postcss-cli": "latest",
+		"postcss-easy-import": "latest",
+		"postcss-loader": "^8.1.1",
+		"postcss-preset-env": "latest",
+		"tailwindcss": "^3.4.3",
+		"uglify-js": "^3.17.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.24.5"
+	}
+}
