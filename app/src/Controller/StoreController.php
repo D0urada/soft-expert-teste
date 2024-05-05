@@ -46,13 +46,15 @@ class StoreController extends PageController
 
 		$result = null;
 
+
+
 		foreach ($results as $key => $product) {
 			$result .= $this->view->render('products', [
 				'name' => $product->name,
 				'value' => $product->value,
 				'tax_value' => $product->tax_value,
 				'img_url' => $product->img_url,
-				'full_value' => $this->mathOperations->percentage($product->tax_value, $product->value),
+				'full_value' => $this->mathOperations->percentage($product->tax_value, $product->value) + intval($product->value),
 				'type' => $this->getTypeNameById($product->type_id)
 			]);
 		} 
