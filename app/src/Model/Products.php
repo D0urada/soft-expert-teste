@@ -18,6 +18,8 @@ class Products
 
     public $type_id;
 
+    public $img_url;
+
     public $created;
 
     public $updated;

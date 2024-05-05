@@ -41,6 +41,7 @@ class ProductsTypesSeed extends AbstractSeed
 				'value' =>  500,
 				'tax_value' =>  24,
 				'type_id' => 1,
+				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
 				'updated' => date('Y-m-d H:i:s')
 			],
@@ -49,6 +50,7 @@ class ProductsTypesSeed extends AbstractSeed
 				'value' =>  525,
 				'tax_value' =>  24,
 				'type_id' => 1,
+				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
 				'updated' => date('Y-m-d H:i:s')
 			],
@@ -57,6 +59,7 @@ class ProductsTypesSeed extends AbstractSeed
 				'value' =>  548,
 				'tax_value' =>  55,
 				'type_id' => 2,
+				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
 				'updated' => date('Y-m-d H:i:s')
 			],
@@ -65,6 +68,7 @@ class ProductsTypesSeed extends AbstractSeed
 				'value' =>  592,
 				'tax_value' =>  55,
 				'type_id' => 2,
+				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
 				'updated' => date('Y-m-d H:i:s')
 			]

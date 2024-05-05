@@ -27,6 +27,7 @@ final class Products extends AbstractMigration
 			->addColumn('value', 'decimal')
 			->addColumn('tax_value', 'decimal')
 			->addColumn('type_id', 'integer')->addForeignKey('type_id', 'types', 'id', array('delete'=> 'CASCADE', 'update'=> 'CASCADE'))
+			->addColumn('img_url', 'string', ['limit' => 100])
 			->addColumn('created', 'datetime')
 			->addColumn('updated', 'datetime', ['null' => true])
 			->create();

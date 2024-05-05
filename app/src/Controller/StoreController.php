@@ -51,6 +51,7 @@ class StoreController extends PageController
 				'name' => $product->name,
 				'value' => $product->value,
 				'tax_value' => $product->tax_value,
+				'img_url' => $product->img_url,
 				'full_value' => $this->mathOperations->percentage($product->tax_value, $product->value),
 				'type' => $this->getTypeNameById($product->type_id)
 			]);

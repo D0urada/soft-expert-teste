@@ -10755,4 +10755,11 @@ function toggleSlideover(e) {
  $('#cart-bt-x').click(toggleSlideover);
 
 
+ kofiWidgetOverlay.draw("mohamedghulam", {
+	type: "floating-chat",
+	"floating-chat.donateButton.text": "Support me",
+	"floating-chat.donateButton.background-color": "#323842",
+	"floating-chat.donateButton.text-color": "#fff"
+});
+  
 },{"jquery":1}]},{},[2]);

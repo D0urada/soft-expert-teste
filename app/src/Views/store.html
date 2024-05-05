@@ -1,20 +1,10 @@
-<section class="bg-gray-900">
-	<button id="cart-bt" type="button" class="bg-gray-600 cursor-pointer text-white 
-		absolute right-0 duration-500 ease-out transition-all
-		hover:bg-black rounded  focus:ring-4 focus:outline-none focus:ring-blue-300 
-		font-medium text-sm px-5 py-2.5 text-center inline-flex items-center me-2">
-		<span id="cart-bt-text" class="hidden">
-			Carrinho
-		</span>
-		<svg class="w-3.5 h-3.5 m-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
-		<path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
-		</svg>
-	</button>
-	<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 h-screen">
+<section class="bg-gray-900 min-h-80-screen">
+	<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 h-fit">
 		<h2 class="mb-8 text-3xl font-extrabold tracking-tight leading-tight text-center text-white md:text-4xl">
 			Loja
 		</h2>
-		<div class="sm:gap-12 md:grid-cols-3 lg:grid-cols-6 text-gray-400 flex justify-center">
+		<div class="sm:gap-12 text-gray-400 w-fit mx-auto 
+		grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
 			{{products}}
 		</div>
 	</div>
