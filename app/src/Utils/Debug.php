@@ -7,13 +7,24 @@ namespace App\Utils;
 class Debug
 {
 	/**
-	 * debug
+	 * print
 	 */
-	public static function debug($debug = [])
+	public static function print($debug = [])
 	{
 		echo "<pre>";
 		print_r($debug);
 		echo "</pre>";
 		exit;
+	}
+
+	/**
+	 * dd
+	 */
+	public static function dd($debug = [])
+	{
+		echo "<pre>";
+		var_dump($debug);
+		echo "</pre>";
+		die;
 	}
 }

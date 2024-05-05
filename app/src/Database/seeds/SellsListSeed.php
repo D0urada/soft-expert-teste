@@ -16,6 +16,16 @@ class SellsListSeed extends AbstractSeed
      */
     public function run(): void
     {
+		$data = [
+			[
+				'sell_json' =>  '{aaaaaaaaaaaaaaaaaaaaaa}',
+				'created' => date('Y-m-d H:i:s'),
+				'updated' => date('Y-m-d H:i:s')
+			]
+		];
 
+		$posts = $this->table('sells_list');
+        $posts->insert($data)
+              ->saveData();
     }
 }

@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Utils\Debug;
+
 class Model
 {
-    private int $id;
+    public int $id;
 
-    private string $name;
+    public string $name;
 
     public const TABLE = 'exemplo';
 

@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\Utils\View;
 use App\Utils\Debug;
 
-class Page
+class PageController
 {
 	public $view;
 

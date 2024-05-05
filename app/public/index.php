@@ -13,7 +13,7 @@ View::init([
 
 $router = new Router(URL);
 
-include ('/var/www/html/routers/pages.php');
+include ('/var/www/html/routers/routers.php');
 
 $router->run()->sendResponse();
 

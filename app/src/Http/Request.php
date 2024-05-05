@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http;
 
+use App\Utils\Debug;
+
 
 /**
  * Classe de requisição de rotas.

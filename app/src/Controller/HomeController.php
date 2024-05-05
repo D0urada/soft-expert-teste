@@ -7,7 +7,8 @@ namespace App\Controller;
 use App\Utils\View;
 use App\Utils\Debug;
 
-class Home extends Page
+
+class HomeController extends PageController
 {
 	public function __construct() 
 	{
@@ -16,11 +17,9 @@ class Home extends Page
 
 	public function index() 
 	{
-		$content = $this->view->render('home', [
-			'name' => 'home'
-		]);
+		$content = $this->view->render('home');
 
-		$title = 'Home Page';
+		$title = 'Home - Soft Expert Teste - Júlia Dourado';
 
 		return $this->getPage($title, $content);
 

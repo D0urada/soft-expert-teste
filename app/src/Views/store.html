@@ -1,10 +1,14 @@
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-gray-900">
+	<button id="cart-bt" class="bg-gray-600 cursor-pointer px-5 py-2 text-sm text-white hover:bg-black rounded">
+		Toggle Slide-over
+	</button>
 	<div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 h-screen">
-		<h2 class="mb-8 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 lg:mb-16 dark:text-white md:text-4xl">
+		<h2 class="mb-8 text-3xl font-extrabold tracking-tight leading-tight text-center text-white md:text-4xl">
 			Loja
 		</h2>
-		<div class="text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400 flex justify-center">
-
+		<div class="sm:gap-12 md:grid-cols-3 lg:grid-cols-6 text-gray-400 flex justify-center">
+			{{products}}
 		</div>
 	</div>
 </section>
+{{cart}}

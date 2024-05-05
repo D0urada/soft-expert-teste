@@ -7,6 +7,7 @@ namespace App\Http;
 use Closure;
 use Exception;
 use ReflectionFunction;
+use App\Utils\Debug;
 
 class Router
 {
