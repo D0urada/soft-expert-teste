@@ -1,5 +1,11 @@
-#  passos para rodar o projeto:
+### bibliotecas utilizadas:
+- Composer, para dar autoload nos namespaces.
+- Phinx, para lidar com migrations e seeds.
+- Tailwind e Jquery no front end (e algumas bibliotecas como uglify para build).
+- PhpUnit para os testes.
+- Projeto feito em Docker.
 
+#  passos para rodar o projeto:
 clonar o projeto:
 ```sh
     git clone https://github.com/D0urada/php-8-base.git
@@ -13,6 +19,17 @@ copiar .env:
 buildar docker:
 ```sh
     docker-compose up -d
+```
+
+rodar os comandos para criar e popular o banco:
+```sh
+    docker exec -it soft-expert-teste-php-fpm-1 /bin/sh 
+```
+```sh
+    vendor/bin/phinx migrate
+```
+```sh
+    vendor/bin/phinx seed:run
 ```
 
 para acessar projeto:

@@ -2,6 +2,7 @@ var $ = require( "jquery" );
 
 const URL = 'http://localhost:8080';
 
+
 $( "#target" ).on( "click", function() {
 	alert( "clicou." );
 
@@ -16,7 +17,5 @@ $( "#target" ).on( "click", function() {
 			alert("Request: "+JSON.stringify(request));
 		}
 	});
-
-	alert( "clicou." );
 } );
 

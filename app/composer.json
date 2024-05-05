@@ -15,7 +15,8 @@
 		"ext-pdo_pgsql": "*",
 		"ext-pgsql": "*",
 		"symfony/cache": "^6.1",
-		"predis/predis": "^2.8"
+		"predis/predis": "^2.8",
+		"robmorgan/phinx": "0.x-dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^9.5"
