@@ -10744,6 +10744,13 @@ function toggleSlideover(e) {
     $('#slideover').toggleClass('translate-x-full');
  }
 
+ $( "#cart-bt" ).hover(
+	function() {
+		$('#cart-bt-text').toggleClass('hidden');
+		$('#cart-bt-text').toggleClass('block');
+	}
+);
+
  $('#cart-bt').click(toggleSlideover);
  $('#cart-bt-x').click(toggleSlideover);
 
