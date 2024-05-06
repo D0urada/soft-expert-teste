@@ -29,7 +29,6 @@ class StoreController extends PageController
 	public function index() 
 	{
 		$content = $this->view->render('store', [
-			'name' => 'store',
 			'products' => $this->getProducts(),
 			'cart' => $this->renderCart(),
 			'products_add_modal' => $this->renderProductsModal()
@@ -56,7 +55,8 @@ class StoreController extends PageController
 				'tax_value' => $product->tax_value,
 				'img_url' => $product->img_url,
 				'full_value' => $this->mathOperations->percentage($product->tax_value, $product->value) + intval($product->value),
-				'type' => $this->getTypeNameById($product->type_id)
+				'type' => $this->getTypeNameById($product->type_id),
+				'type_id' => $product->type_id
 			]);
 		} 
 

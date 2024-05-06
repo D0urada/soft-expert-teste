@@ -10030,6 +10030,11 @@ video {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
+.bg-gray-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 7 18 / var(--tw-bg-opacity));
+}
+
 .bg-green-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));
@@ -10337,11 +10342,6 @@ video {
 .bg-yellow-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(113 63 18 / var(--tw-bg-opacity));
-}
-
-.bg-gray-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(3 7 18 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-0 {
@@ -12035,6 +12035,10 @@ video {
 
 .p-px {
   padding: 1px;
+}
+
+.p-2\.5 {
+  padding: 0.625rem;
 }
 
 .px-0 {
@@ -15933,6 +15937,24 @@ video {
   * your stylesheet by default.
   */
 
+@media (min-width: 768px) {
+  .md\:ml-6 {
+    margin-left: 1.5rem;
+  }
+
+  .md\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+}
+
 .min-h-80-screen {
   min-height: 80vh;
+}
+
+.products {
+  display:block;
 }
