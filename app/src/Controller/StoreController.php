@@ -31,7 +31,8 @@ class StoreController extends PageController
 		$content = $this->view->render('store', [
 			'name' => 'store',
 			'products' => $this->getProducts(),
-			'cart' => $this->renderCart()
+			'cart' => $this->renderCart(),
+			'products_add_modal' => $this->renderProductsModal()
 		]);
 
 		$title = 'Loja - Soft Expert Teste - Júlia Dourado';
@@ -70,6 +71,13 @@ class StoreController extends PageController
 	private function renderCart()
 	{
 		$result = $this->view->render('cart');
+
+		return $result;
+	}
+
+	private function renderProductsModal()
+	{
+		$result = $this->view->render('products_add_modal');
 
 		return $result;
 	}
