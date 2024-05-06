@@ -9,12 +9,12 @@ class TypesRepository extends Repository
 {
     private $table = Types::TABLE;
 
-    public function all(): array
+	public function all(): array
     {
         return $this->connection->query(
 			"SELECT * FROM {$this->table}
 			ORDER BY created DESC"
-		)->fetchAll(\PDO::FETCH_CLASS, Products::class);
+		)->fetchAll(\PDO::FETCH_CLASS, Types::class);
     }
 
 	public function getTypeNameById(int $typeId)
@@ -28,14 +28,4 @@ class TypesRepository extends Repository
 		return $result[0]->name;
 	}
 
-	public function insert($values): array
-    {
-		Debug::dd($values);
-
-        // return $this->connection->query(
-		// 	INSERT INTO {$this->table} ()
-		// 	VALUES (value1, value2, value3, ...)
-		// 	"SELECT * FROM {$this->table}"
-		// )->fetchAll(\PDO::FETCH_CLASS, Products::class);
-    }
 }

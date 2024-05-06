@@ -29,7 +29,7 @@ class StoreController extends PageController
 	public function index() 
 	{
 		$content = $this->view->render('store', [
-			'products' => $this->getProducts(),
+			'products' => $this->renderProducts(),
 			'cart' => $this->renderCart(),
 			'products_add_modal' => $this->renderProductsModal()
 		]);
@@ -40,13 +40,11 @@ class StoreController extends PageController
 
 	}
 
-	private function getProducts()
+	private function renderProducts()
 	{
 		$results = $this->productsRepository->all();
 
 		$result = null;
-
-
 
 		foreach ($results as $key => $product) {
 			$result .= $this->view->render('products', [
@@ -77,7 +75,26 @@ class StoreController extends PageController
 
 	private function renderProductsModal()
 	{
-		$result = $this->view->render('products_add_modal');
+		$content = $this->view->render('products_add_modal', [
+			'types' => $this->renderTypes(),
+		]);
+
+		return $content;
+	}
+
+	private function renderTypes()
+	{
+		$results = $this->typesRepository->all();
+
+		$result = null;
+
+		foreach ($results as $key => $type) {
+
+			$result .= $this->view->render('types', [
+				'name' => $type->name,
+				'tax_value' => $type->tax
+			]);
+		} 
 
 		return $result;
 	}

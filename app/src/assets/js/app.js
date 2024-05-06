@@ -2,23 +2,7 @@ var $ = require( "jquery" );
 
 const URL = 'http://localhost:8080';
 
-$( "#target" ).on( "click", function() {
-	alert( "clicou." );
-
-	$.ajax({
-		url : `${URL}/sobre`,
-		type : 'GET',
-		success : function(data) {              
-			alert('Data: '+ data);
-		},
-		error : function(request,error)
-		{
-			alert("Request: "+JSON.stringify(request));
-		}
-	});
-} );
-
-// ----------- Carrinho ------------------
+// ----------- Abrir e fechar Carrinho ------------------
 function toggleSlideover () {
     $('#slideover-container').toggleClass('invisible');
     $('#slideover-bg').toggleClass('opacity-0');
@@ -37,7 +21,7 @@ function toggleSlideover () {
  $('#cart-bt-x').click(toggleSlideover);
 
 
- // ----------- Modal produto ------------------
+ // ----------- Abrir e fechar modal de cadastro de produto produto ------------------
 
  toggleModalInit();
 
@@ -191,16 +175,21 @@ function sumValuesSell(product_array) {
 	});
 }
 
+// ----------- Requisição post do castro do produto ------------------
 
 
-function sumValues(product_array) {
+$( "#target" ).on( "click", function() {
+	alert( "clicou." );
 
-}
-
-function sumTax(product_array) {
-	
-}
-
-function sumEndValues(product_array) {
-	
-}
+	$.ajax({
+		url : `${URL}/sobre`,
+		type : 'GET',
+		success : function(data) {              
+			alert('Data: '+ data);
+		},
+		error : function(request,error)
+		{
+			alert("Request: "+JSON.stringify(request));
+		}
+	});
+} );
