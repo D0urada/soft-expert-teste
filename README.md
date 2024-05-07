@@ -8,7 +8,7 @@
 #  passos para rodar o projeto:
 clonar o projeto:
 ```sh
-    git clone https://github.com/D0urada/php-8-base.git
+    git clone https://github.com/D0urada/soft-expert-teste.git
 ```
 
 copiar .env:
