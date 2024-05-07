@@ -50,9 +50,10 @@ class StoreController extends PageController
 			$result .= $this->view->render('products', [
 				'name' => $product->name,
 				'value' => $product->value,
+				'tax' => $product->tax,
 				'tax_value' => $product->tax_value,
+				'end_value' => $product->end_value,
 				'img_url' => $product->img_url,
-				'full_value' => $this->mathOperations->percentage($product->tax_value, $product->value) + intval($product->value),
 				'type' => $this->getTypeNameById($product->type_id),
 				'type_id' => $product->type_id
 			]);
@@ -76,13 +77,13 @@ class StoreController extends PageController
 	private function renderProductsModal()
 	{
 		$content = $this->view->render('products_add_modal', [
-			'types' => $this->renderTypes(),
+			'types' => $this->renderProductsTypes(),
 		]);
 
 		return $content;
 	}
 
-	private function renderTypes()
+	private function renderProductsTypes()
 	{
 		$results = $this->typesRepository->all();
 
@@ -92,7 +93,8 @@ class StoreController extends PageController
 
 			$result .= $this->view->render('types', [
 				'name' => $type->name,
-				'tax_value' => $type->tax
+				'tax' => $type->tax,
+				'id' => $type->id
 			]);
 		} 
 

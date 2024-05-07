@@ -1,12 +1,12 @@
 <div class="w-72 bg-gray-200 shadow-md rounded-xl duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
-	<a href="#" class="products" data-values='[{"name":"{{name}}", "value":"{{value}}", "tax_value":"{{tax_value}}", "full_value":"{{full_value}}", "type":"{{type}}", "type_id":"{{type}}"}]'>
+	<a class="products" data-values='[{"name":"{{name}}", "value":"{{value}}", "tax":"{{tax}}", "tax_value":"{{tax_value}}", "end_value":"{{end_value}}", "type":"{{type}}", "type_id":"{{type}}"}]'>
 		<img src="{{img_url}}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
 		<div class="px-4 py-3 w-72">
 			<p class="text-lg font-bold text-black truncate block capitalize">{{name}}</p>
 			<div class="flex items-center">
 				<p class="text-lg font-semibold text-black cursor-auto my-3">R$ {{value}}</p>
-				<p class="text-sm text-gray-600 cursor-auto ml-2">→ {{tax_value}}%</p>
-				<p class="text-sm text-gray-600 cursor-auto ml-2">→ R$ {{full_value}}</p>
+				<p class="text-sm text-gray-600 cursor-auto ml-2">→ {{tax}}%</p>
+				<p class="text-sm text-gray-600 cursor-auto ml-2">→ R$ {{end_value}}</p>
 				<div class="ml-auto">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />

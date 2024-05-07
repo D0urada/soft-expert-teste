@@ -6,18 +6,6 @@ use Phinx\Migration\AbstractMigration;
 
 final class Products extends AbstractMigration
 {
-    /**
-     * Change Method.
-     *
-     * Write your reversible migrations using this method.
-     *
-     * More information on writing migrations is available here:
-     * https://book.cakephp.org/phinx/0/en/migrations.html#the-change-method
-     *
-     * Remember to call "create()" or "update()" and NOT "save()" when working
-     * with the Table class.
-     */
-
 	public function up(): void
     {
 		$table = $this->table('products');
@@ -25,7 +13,13 @@ final class Products extends AbstractMigration
 		$table
 			->addColumn('name', 'string', ['limit' => 100])
 			->addColumn('value', 'decimal')
+			->addColumn('tax', 'decimal')
 			->addColumn('tax_value', 'decimal')
+			->addColumn('end_value', 'decimal')
+			/**
+			 * Coloquei o valor do imposto, a porcentagem e o valor final no produto, para evitar calculos depois na hora da venda e evitar que a informação se perda
+			 * o id do tipo é para validação se o id existe e garantir que um produto sempre tenha um tipo, do que para fazer calculos
+			 */
 			->addColumn('type_id', 'integer')->addForeignKey('type_id', 'types', 'id', array('delete'=> 'CASCADE', 'update'=> 'CASCADE'))
 			->addColumn('img_url', 'string', ['limit' => 100])
 			->addColumn('created', 'datetime')

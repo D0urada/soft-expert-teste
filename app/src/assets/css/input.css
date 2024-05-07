@@ -33,3 +33,7 @@
 .products {
 	display:block;
 }
+
+.cart-bt-exclude {
+	display:block;
+}

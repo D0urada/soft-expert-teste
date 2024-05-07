@@ -22,44 +22,36 @@
 			</div>
   
 			<!--Body-->
-			<form class="p-4 md:p-5" action="" method="" name="prducts">
+			<form class="p-4 md:p-5" name="form-prducts" id="form-prducts">
 				<div class="grid gap-4 mb-4 grid-cols-2">
 					<div class="col-span-2">
 						<label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
 						<input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type product name" required="">
 					</div>
-					<div id="type-select" class="col-span-2 sm:col-span-1">
-						<label for="category" class="block mb-2 text-sm font-medium text-gray-900">Tipo:</label>
-						<select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-							<option selected="">Selecione um Tipo</option>
-							{{types}}
-						</select>
+					<div id="type-select flex">
+						<div id="type-select-label" class="col-span-2 sm:col-span-1">
+							<label for="type-select" class="block mb-2 text-sm font-medium text-gray-900">Tipo:</label>
+							<select id="type-select" name="type-select" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required="">
+								<option value="0" selected="selected">Selecione um Tipo</option>
+								{{types}}
+							</select>
+						</div>
+						<button id="remove-new-type-bt" type="button" class="text-gray-100 items-center bg-gray-600 hover:bg-gray-950 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hidden mt-5">
+							Remove Novo Tipo
+						</button>
 					</div>
 					<div class="col-span-2 sm:col-span-1">
 						<label for="price" class="block mb-2 text-sm font-medium text-gray-900">Valor</label>
 						<input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="$2999" required="">
 					</div>
-					<button id="add-new-type" type="button" class="text-gray-100 inline-flex items-center bg-gray-600 hover:bg-gray-950 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+					<button id="add-new-type-bt" type="button" class="text-gray-100 inline-flex items-center bg-gray-600 hover:bg-gray-950 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
 						<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
 						Add Novo Tipo
 					</button>
-					<button id="remove-new-type" type="button" class="text-gray-100 items-center bg-gray-600 hover:bg-gray-950 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hidden">
-						Remove Novo Tipo
-					</button>
-					<div id="add-new-type-label" class="col-span-2 hidden">
-						<p class="text-1x1 font-bold">Cadastro Novo Tipo</p>
-						<div class="col-span-2">
-							<label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nome Tipo</label>
-							<input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type product name" required="">
-						</div>
-						<div class="col-span-2 sm:col-span-1">
-							<label for="price" class="block mb-2 text-sm font-medium text-gray-900">Imposto</label>
-							<input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="$2999" required="">
-						</div>
-					</div>
+					<div id="add-new-type" class="col-span-2"></div>
 					<div class="col-span-2">
-						<label for="description" class="block mb-2 text-sm font-medium text-gray-900">Url da imagem do Produto: </label>
-						<textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-300 focus:border-gray-500" placeholder="Write product description here"></textarea>                    
+						<label for="imgUrl" class="block mb-2 text-sm font-medium text-gray-900">Url da imagem do Produto: </label>
+						<textarea id="imgUrl" name="imgUrl" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-300 focus:border-gray-500" placeholder="url da iamgem"></textarea>                    
 					</div>
 				</div>
 
@@ -76,3 +68,5 @@
 	  	</div>
 	</div>
 </div>
+
+

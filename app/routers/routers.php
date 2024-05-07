@@ -9,12 +9,6 @@ $router->get('/', [
 	}
 ]);
 
-$router->get('/sobre', [
-	function(){
-		return new Response(200, 'teste');
-	}
-]);
-
 $router->get('/sells_list', [
 	function(){
 		return new Response(200, (new Controller\SellsListController())->index());
@@ -27,14 +21,8 @@ $router->get('/store', [
 	}
 ]);
 
-$router->get('/pagina/{idPagina}/{acao}', [
-	function($idPagina, $acao){
-		return new Response(200, 'Pagina'.$idPagina.' - '.$acao);
-	}
-]);
-
-$router->post('/depoimentos', [
+$router->post('/productcts/create', [
 	function($request){
-		return new Response(200, (new Controller\StoreController())->index());
+		return new Response(200, (new Controller\ProductsController())->create($request));
 	}
 ]);

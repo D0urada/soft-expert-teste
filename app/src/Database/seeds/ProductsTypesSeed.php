@@ -39,7 +39,9 @@ class ProductsTypesSeed extends AbstractSeed
 			[
 				'name' => 'Product 1',
 				'value' =>  500,
-				'tax_value' =>  24,
+				'tax' =>  24,
+				'tax_value' =>  120,
+				'end_value' =>  620,
 				'type_id' => 1,
 				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
@@ -48,7 +50,9 @@ class ProductsTypesSeed extends AbstractSeed
 			[
 				'name' => 'Product 2',
 				'value' =>  525,
-				'tax_value' =>  24,
+				'tax' =>  24,
+				'tax_value' =>  126,
+				'end_value' =>  651,
 				'type_id' => 1,
 				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
@@ -57,7 +61,9 @@ class ProductsTypesSeed extends AbstractSeed
 			[
 				'name' => 'Product 3',
 				'value' =>  548,
-				'tax_value' =>  55,
+				'tax' =>  55,
+				'tax_value' =>  301.4,
+				'end_value' =>  849.4,
 				'type_id' => 2,
 				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),
@@ -66,7 +72,9 @@ class ProductsTypesSeed extends AbstractSeed
 			[
 				'name' => 'Product 4',
 				'value' =>  592,
-				'tax_value' =>  55,
+				'tax' =>  55,
+				'tax_value' =>  325.6,
+				'end_value' =>  917.6,
 				'type_id' => 2,
 				'img_url' => 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier',
 				'created' => date('Y-m-d H:i:s'),

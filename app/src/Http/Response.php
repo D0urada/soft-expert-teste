@@ -24,7 +24,7 @@ class Response
   private $headers = [];
 
   /**
-   * Tipo do conteúdo retornado na resposta HTTP  .
+   * Tipo do conteúdo retornado na resposta HTT.
    *
    * @var string
    */
@@ -91,7 +91,6 @@ class Response
   }
 
   /**
-   * Enviar resposta para o usuário.
    *
    * @return void
    */

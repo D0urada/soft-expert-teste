@@ -8,13 +8,24 @@ use App\Utils\Debug;
 
 class MathOperations
 {
-	public function percentage($percentage, $total)
+	public function percentage($percentage, $value)
 	{
-		if(is_string($percentage) || is_string($total)) {
+		if(is_string($percentage) || is_string($value)) {
 			$percentage = intval($percentage);
-			$total = intval($total);
+			$value = intval($value);
 		} 
 
-		return ($percentage / 100) * $total;
+		return ($percentage / 100) * $value;
+	}
+
+	public function taxCalc($value, $percentage)
+	{
+		$values = [];
+
+		$values['percentageValue'] = $this->percentage($percentage, $value);
+		
+		$values['endValue'] = $values['percentageValue'] + intval($value);
+
+		return $values;
 	}
 }

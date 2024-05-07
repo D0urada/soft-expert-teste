@@ -40,4 +40,9 @@ class Connection
     {
         return $this->pdo;
     }
+
+	public function new(): PDO
+    {
+        return $this->pdo;
+    }
 }

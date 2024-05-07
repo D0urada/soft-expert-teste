@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Model\Products;
@@ -9,6 +11,14 @@ class ProductsRepository extends Repository
 {
     private $table = Products::TABLE;
 
+	private $model;
+
+	public function __construct() {
+		parent::__construct();
+
+		$this->model = new Products;
+	}
+
     public function all(): array
     {
         return $this->connection->query(
@@ -17,14 +27,52 @@ class ProductsRepository extends Repository
 		)->fetchAll(\PDO::FETCH_CLASS, Products::class);
     }
 
-	public function insert($values): array
+	public function insert($product, $type)
     {
-		Debug::dd($values);
+		try {
+			$this->connection->beginTransaction();
+
+			$stmt = $this->connection->prepare("INSERT INTO {$this->table} ({$this->model->columns}) VALUES(?,?,?,?,?,?,?,?,?)");
+		
+			$stmt->execute(array(
+				$product['name'], 
+				$product['price'], 
+				$type->tax, 
+				$product['values']['percentageValue'], 
+				$product['values']['endValue'],
+				$type->id, 
+				$product['imgUrl'],
+				date("Y-m-d H:i:s"),
+				date("Y-m-d H:i:s")
+			));
+	
+			$this->connection->commit();
+
+			$stmt->fetch(\PDO::FETCH_ASSOC);
+
+			return true;
+
+		} catch (\Throwable $th) {
+			$this->connection->rollBack();
+			throw new Throwable("Error Processing Request", 1);
+		}
+
+
+		//Debug::dd($ultimo_id);
 
         // return $this->connection->query(
-		// 	INSERT INTO {$this->table} ()
-		// 	VALUES (value1, value2, value3, ...)
-		// 	"SELECT * FROM {$this->table}"
-		// )->fetchAll(\PDO::FETCH_CLASS, Products::class);
+		// 	"INSERT INTO {$this->table} (
+		// 		{$this->model->columns})
+		// 	VALUES (
+		// 		'{$product['name']}', 
+		// 		{$product['price']}, 
+		// 		{$type->tax}, 
+		// 		{$product['values']['percentageValue']}, 
+		// 		{$product['values']['endValue']},
+		// 		{$type->id}, 
+		// 		'{$product['imgUrl']}',
+		// 		now(),
+		// 		now())"
+		// )->fetchAll(\PDO::FETCH_CLASS, Products::class)->lastInsertId();
     }
 }
