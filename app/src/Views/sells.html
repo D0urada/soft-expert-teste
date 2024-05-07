@@ -1,3 +1,46 @@
-<div>
-	{{sell_json}}
-</div>
+
+<h3 class="mb-6 text-sm font-semibold text-gray-100 uppercase">{{sell_name}}, feita em {{sell_data}}</h3>
+
+<table class="w-full text-sm text-left rtl:text-right text-gray-400">
+
+	<thead class="text-xs uppercase bg-gray-700 text-gray-400">
+		<tr>
+			<th scope="col" class="px-6 py-3">
+				Nome do Produto
+			</th>
+			<th scope="col" class="px-6 py-3">
+				Valor do Produto
+			</th>
+			<th scope="col" class="px-6 py-3">
+				Tipo do Produto
+			</th>
+			<th scope="col" class="px-6 py-3">
+				Valor do imposto do Produto
+			</th>
+			<th scope="col" class="px-6 py-3">
+				Porcentagem de Imposto
+			</th>
+			<th scope="col" class="px-6 py-3">
+				Valor Final Do Produto
+			</th>
+		</tr>
+	</thead>
+	{{sell_table_products}}
+	<thead class="text-xs uppercase bg-gray-700 text-gray-400">
+		<tr>
+			<th scope="col" class="px-6 py-3"></th>
+			<th scope="col" class="px-6 py-3">
+				Valor Final da Venda
+			</th>
+			<th scope="col" class="px-6 py-3"></th>
+			<th scope="col" class="px-6 py-3">
+				Valor Final dos Impostos
+			</th>
+			<th scope="col" class="px-6 py-3"></th>
+			<th scope="col" class="px-6 py-3">
+				Valor Final da Venda com impostos 
+			</th>
+		</tr>
+	</thead>
+	{{sell_table}}
+</table>

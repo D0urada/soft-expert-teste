@@ -10,6 +10,8 @@ class SellsList
 {
     public $id;
 
+    public $products_json;
+
     public $sell_json;
 
 	public $created;
@@ -17,4 +19,6 @@ class SellsList
     public $updated;
 
     public const TABLE = 'sells_list';
+
+	public $columns = 'products_json, sell_json, created, updated';
 }

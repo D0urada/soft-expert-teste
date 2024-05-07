@@ -9,7 +9,7 @@ $router->get('/', [
 	}
 ]);
 
-$router->get('/sells_list', [
+$router->get('/sells-list', [
 	function(){
 		return new Response(200, (new Controller\SellsListController())->index());
 	}

@@ -37,8 +37,8 @@ class ProductsController extends PageController
 			$postVars = $request->getPostVars();
 
 			// tratamento para url, ja que não é obrigatoria
-			if(!isset($postVars['imgUrl'])) {
-				$postVars['imgUrl'] = 'https://source.unsplash.com/random/200x250?sig=incrementingIdentifier';
+			if(empty($postVars['imgUrl'])) {
+				$postVars['imgUrl'] = "https://source.unsplash.com/random/200x250?sig=incrementingIdentifier";
 			} 
 
 			// detecta se precisa cadastrar um novo tipo 
@@ -56,7 +56,7 @@ class ProductsController extends PageController
 
 				return new Response(200, 'produto Cadastrado'); 
 			} else {
-				return new Response(404, 'Esse tipo não é valido');
+				return new Response(400, 'Esse tipo não é valido');
 			}	  
 
 		  } catch (\Exception $error) {

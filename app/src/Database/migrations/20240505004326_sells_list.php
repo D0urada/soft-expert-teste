@@ -11,7 +11,8 @@ final class SellsList extends AbstractMigration
 		$table = $this->table('sells_list');
 
 		$table
-			->addColumn('sell_json', 'string', ['limit' => 10000])
+			->addColumn('products_json', 'string', ['limit' => 100000])
+			->addColumn('sell_json', 'string', ['limit' => 100000])
 			->addColumn('created', 'datetime')
 			->addColumn('updated', 'datetime', ['null' => true])
 			->create();

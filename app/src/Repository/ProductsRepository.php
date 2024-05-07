@@ -56,23 +56,5 @@ class ProductsRepository extends Repository
 			$this->connection->rollBack();
 			throw new Throwable("Error Processing Request", 1);
 		}
-
-
-		//Debug::dd($ultimo_id);
-
-        // return $this->connection->query(
-		// 	"INSERT INTO {$this->table} (
-		// 		{$this->model->columns})
-		// 	VALUES (
-		// 		'{$product['name']}', 
-		// 		{$product['price']}, 
-		// 		{$type->tax}, 
-		// 		{$product['values']['percentageValue']}, 
-		// 		{$product['values']['endValue']},
-		// 		{$type->id}, 
-		// 		'{$product['imgUrl']}',
-		// 		now(),
-		// 		now())"
-		// )->fetchAll(\PDO::FETCH_CLASS, Products::class)->lastInsertId();
     }
 }

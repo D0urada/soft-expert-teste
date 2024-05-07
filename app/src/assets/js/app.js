@@ -2,6 +2,9 @@ var $ = require( "jquery" );
 
 const URL = 'http://localhost:8080';
 
+
+
+
 // ----------- Abrir e fechar Carrinho ------------------
 function toggleSlideover () {
     $('#slideover-container').toggleClass('invisible');
@@ -19,6 +22,8 @@ function toggleSlideover () {
 
  $('#cart-bt').click(toggleSlideover);
  $('#cart-bt-x').click(toggleSlideover);
+
+
 
 
  // ----------- Abrir e fechar modal de cadastro de produto produto ------------------
@@ -93,6 +98,12 @@ $("#remove-new-type-bt").click(function(){
 	$('#remove-new-type-bt').removeClass("block");
 }); 
 
+$(document).on("change","#type-select",function(){
+	$("option[value=" + this.value + "]", this)
+	.attr("selected", true).siblings()
+	.removeAttr("selected")
+});
+
 function buildNewTypeLabel() {
 	var dom_product = `
 		<div id="add-new-type-label">
@@ -114,7 +125,6 @@ function buildNewTypeLabel() {
 
 
 
-
 // ----------- Adicionar e Remove Produtos ao carrinho ------------------
 
 $(".products").click(function(){
@@ -124,21 +134,13 @@ $(".products").click(function(){
 	apprendCartProductsInput(buildCartProductsInput(product_array));
 	cartCounter();
 	sumValuesSell(product_array);
-
-
-});
-
-
-$(`#product_cart_exclude_bt_${$('#counter').val()}`).click(function(){
-	alert('teste');
-	console.log($(this).data('cart-item-id'));
 });
 
 function buildCartProducts (product_array) {
 	var dom_product = `
-		<div class="flex flex-col md:flex-row border-b border-gray-400 py-4" id="product_cart_${$('#counter').val()}">
+		<div class="flex flex-row md:flex-row border-b border-gray-400 py-4">
 			<div class="mt-4 md:mt-0 md:ml-6">
-				<h2 class="text-lg font-bold">${product_array[0].name}</h2>
+				<h2 class="text-lg font-bold">${product_array[0].product_name}</h2>
 				<div class="mt-4 flex items-center">
 				<span class="mr-2 text-gray-600">Valor:</span>
 				<div class="flex items-center">
@@ -151,15 +153,6 @@ function buildCartProducts (product_array) {
 					</div>
 				</div>
 				<span class="mt-1 ml-auto font-bold">R$ ${product_array[0].tax_value}</span>
-				<button type="button" id="product_cart_exclude_bt_${$('#counter').val()}" data-cart-item-id="product_cart_${$('#counter').val()}" 
-				class=" bg-red-500 cursor-pointer text-gray-100 absolute right-0 
-				hover:bg-red-900 rounded  focus:ring-4 focus:outline-none focus:ring-gray-300 
-				font-medium text-sm p-1 text-center inline-flex items-center me-5">
-					<svg class="w-3.5 h-3.5 m-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 18 21">
-						<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-						<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-					</svg>
-				</button>
 			</div>
 		</div>
 		`;
@@ -168,8 +161,9 @@ function buildCartProducts (product_array) {
 }
 
 function buildCartProductsInput (product_array) {
+	
 	var dom_product = `
-		<input type="hidden" value=${JSON.stringify(product_array)} name="sell_product_${$('#counter').val()}">
+		<input type="hidden" value='${JSON.stringify(product_array)}' name="sell_product_${$('#counter').val()}">
 		`;
 
 	return dom_product;
@@ -216,27 +210,45 @@ function sumValuesSell(product_array) {
 	});
 }
 
+
+
+// ----------- Validaç~~ao dos forms ------------------
+
+function validateForm(inputs) {
+	let result = true;
+
+	$.makeArray(inputs).forEach(element => {
+		if(!element.value && element.hasAttribute('required')) {
+			element.classList.remove('bg-red-600');
+			result = false;
+		}
+
+		if(element.value == '0') {
+			element.classList.remove('bg-red-600');
+			result = false;
+		}
+	});
+
+	return result;
+}
+
+
+
+
 // ----------- Requisição post do castro do produto ------------------
-// Bind to the submit event of our form
+
 $("#form-prducts").submit(function(event){
 
-	// Variable to hold request
 	let request;
 
-	// Prevent default posting of form - put here to work in case of errors
 	event.preventDefault();
 
-	console.log('entrou');
-
-	// Abort any pending request
 	if (request) {
 		request.abort();
 	}
 
-	// setup some local variables
 	let $form = $(this);
 
-	// Let's select and cache all the fields
 	let $inputs = $form.find("input, select, textarea");
 
 	if(!validateForm($inputs)) {
@@ -247,46 +259,33 @@ $("#form-prducts").submit(function(event){
 		return setTimeout(location.reload.bind(location), 600);
 	}
 
-	// Serialize the data in the form
 	let serializedData = $form.serialize();
 
-	// Let's disable the inputs for the duration of the Ajax request.
-	// Note: we disable elements AFTER the form data has been serialized.
-	// Disabled form elements will not be serialized.
 	$inputs.prop("disabled", true);
 
-	// Fire off the request to /form.php
+
 	request = $.ajax({
 		url: `${URL}/productcts/create`,
 		type: "post",
 		data: serializedData
 	});
 
-	// Callback handler that will be called on success
 	request.done(function (response, textStatus, jqXHR){
-		// Log a message to the console
-		console.log(response);
-		console.log(textStatus);
-		console.log(jqXHR);
 
 		alert("Produto Cadastrado com sucesso");
 	});
 
-	// Callback handler that will be called on failure
 	request.fail(function (jqXHR, textStatus, errorThrown){
-		// Log the error to the console
 		console.error(
-			"The following error occurred: "+
+			"O seguinte error aconteceu: "+
 			jqXHR, textStatus, errorThrown
 		);
 
 		alert("Erro ao cadastrar produto");
 	});
 
-	// Callback handler that will be called regardless
-	// if the request failed or succeeded
+
 	request.always(function () {
-		// Reenable the inputs
 		$inputs.prop("disabled", false);
 
 		return setTimeout(location.replace(location.href), 600);
@@ -294,26 +293,61 @@ $("#form-prducts").submit(function(event){
 
 });
 
-$(document).on("change","#type-select",function(){
-	$("option[value=" + this.value + "]", this)
-	.attr("selected", true).siblings()
-	.removeAttr("selected")
-});
 
-function validateForm(inputs) {
-	let result = true;
 
-	console.log('validateForm');
-	console.log(inputs);
-	console.log($.makeArray(inputs));
-	console.log('validateForm');
 
-	$.makeArray(inputs).forEach(element => {
-		if(!element.value && element.hasAttribute('required')) {
-			element.classList.remove('bg-red-600');
-			result = false;
-		}
+// ----------- Requisição post das vendas ------------------
+
+$("#form-cart-sell").submit(function(event){
+
+	let request;
+
+	event.preventDefault();
+
+	if (request) {
+		request.abort();
+	}
+
+	let $form = $(this);
+
+	let $inputs = $form.find("input");
+
+	if($inputs.length == 0) {
+		return alert("Adicione um produto para cadastrar uma venda");
+	}
+
+	if(!validateForm($inputs)) {
+		alert("Formulario invalido");
+		return setTimeout(location.reload.bind(location), 600);
+	}
+
+	let serializedData = $form.serialize();
+	
+	$inputs.prop("disabled", true);
+
+	request = $.ajax({
+		url: `${URL}/sells-list/create`,
+		type: "post",
+		data: serializedData
 	});
 
-	return result;
-}
+	request.done(function (response, textStatus, jqXHR){
+
+		alert("Venda Cadastrada com sucesso! Veja a lista de Vendas para ver o que ja comprou");
+	});
+
+	request.fail(function (jqXHR, textStatus, errorThrown){
+		console.error(
+			"O seguinte error aconteceu: "+
+			jqXHR, textStatus, errorThrown
+		);
+
+		alert("Erro ao cadastrar Venda");
+	});
+
+	request.always(function () {
+		return setTimeout(location.replace(location.href), 600);
+	});
+
+});
+

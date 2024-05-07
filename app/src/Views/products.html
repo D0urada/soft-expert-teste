@@ -1,8 +1,8 @@
 <div class="w-72 bg-gray-200 shadow-md rounded-xl duration-200 hover:scale-105 hover:shadow-xl cursor-pointer">
-	<a class="products" data-values='[{"name":"{{name}}", "value":"{{value}}", "tax":"{{tax}}", "tax_value":"{{tax_value}}", "end_value":"{{end_value}}", "type":"{{type}}", "type_id":"{{type}}"}]'>
+	<a class="products" data-values='{"product_name":"{{product_name}}", "value":"{{value}}", "tax":"{{tax}}", "tax_value":"{{tax_value}}", "end_value":"{{end_value}}", "type_name":"{{type_name}}", "type_id":"{{type_id}}"}'>
 		<img src="{{img_url}}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
 		<div class="px-4 py-3 w-72">
-			<p class="text-lg font-bold text-black truncate block capitalize">{{name}}</p>
+			<p class="text-lg font-bold text-black truncate block capitalize">{{product_name}}</p>
 			<div class="flex items-center">
 				<p class="text-lg font-semibold text-black cursor-auto my-3">R$ {{value}}</p>
 				<p class="text-sm text-gray-600 cursor-auto ml-2">→ {{tax}}%</p>
@@ -14,7 +14,7 @@
 					</svg>
 				</div>
 			</div>
-			<p class="text-lg font-semibold text-black cursor-auto my-3">{{type}}</p>
+			<p class="text-lg font-semibold text-black cursor-auto my-3">{{type_name}}</p>
 		</div>
 	</a>
 </div>
