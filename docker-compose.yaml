@@ -1,31 +1,38 @@
-
 services:
+
+    redis:
+        image: redis:alpine
+        networks:
+            - local-network
+
     postgres:
         image: 'postgres:15-alpine'
         volumes:
             - 'postgresdata:/var/lib/postgres'
+        ports:
+            - '8084:5432'
         restart: 'unless-stopped'
         environment:
-            - POSTGRES_USER:root
-            - POSTGRES_PASSWORD=secret
-            - POSTGRES_DB=phpdockerdb
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_DB=${POSTGRES_DB}
         networks:
-          - local-network
+            - local-network
 
     pgadmin:
         user: root
         image: dpage/pgadmin4:latest
         depends_on:
-          - postgres
+            - postgres
         environment:
           PGADMIN_DEFAULT_EMAIL: user@localhost.com
           PGADMIN_DEFAULT_PASSWORD: password
         ports:
-          - 8088:80
+            - 8088:80
         volumes:
-          - .postgresql:/var/lib/postgresql/data
+            - .postgresql:/var/lib/postgresql/data
         networks:
-          - local-network
+            - local-network
 
     webserver:
         build: 
@@ -33,9 +40,10 @@ services:
         ports:
             - '8080:80'
         volumes:
+            - './app/public:/var/www/html/public'
             - './docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
         networks:
-          - local-network
+            - local-network
 
     php-fpm:
         build: 
@@ -45,7 +53,7 @@ services:
             - REDIS_HOST=redis
             - REDIS_PORT=${REDIS_PORT}
         networks:
-          - local-network
+            - local-network
 
 volumes:
     postgresdata:
@@ -53,4 +61,4 @@ volumes:
 
 networks:
     local-network:
-      external: false
+        external: false
