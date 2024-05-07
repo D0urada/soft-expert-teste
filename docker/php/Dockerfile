@@ -24,11 +24,11 @@ COPY --from=composer:2.7.4 /usr/bin/composer /usr/bin/composer
 # instla o composer
 RUN composer install --ignore-platform-reqs
 
-# copia os arquivos da aplicação
-COPY ./app .
-
 # roda o autoload do composer
 RUN composer dump-autoload --optimize
+
+# copia os arquivos da aplicação
+COPY ./app .
 
 FROM app as app_dev
 

@@ -26,3 +26,9 @@ $router->post('/productcts/create', [
 		return new Response(200, (new Controller\ProductsController())->create($request));
 	}
 ]);
+
+$router->post('/sells-list/create', [
+	function($request){
+		return new Response(200, (new Controller\SellsListController())->create($request));
+	}
+]);

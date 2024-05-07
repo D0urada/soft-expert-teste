@@ -2,7 +2,7 @@
 - Composer, para dar autoload nos namespaces.
 - Phinx, para lidar com migrations e seeds.
 - Tailwind e Jquery no front end (e algumas bibliotecas como uglify para build).
-- PhpUnit para os testes.
+- PhpUnit para os testes, **apesar de não ter tido tempo de fazer a classe de teste**.
 - Projeto feito em Docker.
 
 #  passos para rodar o projeto:
@@ -11,26 +11,40 @@ clonar o projeto:
     git clone https://github.com/D0urada/soft-expert-teste.git
 ```
 
-copiar .env:
+dentro da pasta do projeto, copiar .env:
 ```sh
     cp .env.example .env
 ```
 
-buildar docker:
+dentro da pasta do projeto, buildar docker:
 ```sh
-    docker-compose up -d
+    docker-compose -f docker-compose.yaml up --build -d
 ```
 
-rodar os comandos para criar e popular o banco:
+dentro da pasta do projeto, **caso a build não gere a vendor, ele dara um error de autoload**, entre no container:
 ```sh
     docker exec -it soft-expert-teste-php-fpm-1 /bin/sh 
 ```
+
+**e rode o composer**:
+```sh
+    composer install --ignore-platform-reqs
+```
+
+```sh
+    composer dump-autoload --optimize
+```
+
+
+**dentro do container**, rodar os comandos para criar e popular o banco:
 ```sh
     vendor/bin/phinx migrate
 ```
 ```sh
     vendor/bin/phinx seed:run
 ```
+
+our fazer o restore do banco pelo arquivo enviado por email.
 
 para acessar projeto:
 ```sh
@@ -59,14 +73,10 @@ registrar o servidor:
 	password=secret
 ```
 
+
 #  comandos extras:
 
-buildar docker em subir ambiente de dev, com container do node
-```sh
-    docker compose -f docker-compose-dev.yaml up --build -d
-```
-
-para criar a vendor no projeto e não apenas no container, entrar no container do php rodar os seguintes comandos:
+para criar a vendor no projeto e não apenas no container, entrar no container do php e rode os seguintes comandos:
 ```sh
     docker exec -it soft-expert-teste-php-fpm-1 /bin/sh 
 ```
@@ -77,9 +87,14 @@ para criar a vendor no projeto e não apenas no container, entrar no container d
     composer dump-autoload
 ```
 
-para entrar no container do node e rodar comandos do npm:
+para entrar no container do node e rodar os scrips que criei do npm:
 ```sh
     docker exec -it soft-expert-teste-node-1 bash
+```
+
+instala o node para criar a node_modules:
+```sh
+    npm install --force
 ```
 
 comandos dos arquivos css:
